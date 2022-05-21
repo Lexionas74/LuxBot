@@ -29,5 +29,11 @@ async def hi(interaction: Interaction):
 async def about(interaction: Interaction):
 	embed = nextcord.Embed(title="About", description="LuxBot is a bot created by Lexionas#1535 and Luziaf#9464 for an event!\nHope you enjoy the bot!", color=nextcord.Colour.green())
 	await interaction.response.send_message(embed=embed)
+
+@bot.slash_command()
+async def ping(self, ctx):
+	ping = nextcord.Embed(title="Bot latency", description=f"`{round(self.bot.latency * 1000)}ms`", color=nextcord.Colour.green())
+	ping.set_footer(text=f"Requested by {ctx.author}",icon_url=ctx.author.display_avatar.url)    
+	await ctx.send(embed=ping) 
   
 bot.run(my_secret)
