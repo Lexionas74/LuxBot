@@ -4,6 +4,8 @@ import os
 from datetime import datetime
 from nextcord import Guild, Interaction, Message
 from nextcord.ext import commands
+import aiohttp
+import asyncio
 
 bot = commands.Bot(command_prefix="s!", intents=nextcord.Intents.all(), owner_ids ={935434855397871628, 687882857171255309})
 my_secret = os.environ['TOKEN']
@@ -14,8 +16,6 @@ async def on_ready():
 	print("2")
 	print("1")
 	print("Blastoff!") # Space theme lol
-
-
 
 @bot.command()
 async def test(ctx):
@@ -33,6 +33,16 @@ async def about(interaction: Interaction):
 @bot.slash_command(name="ping", description="See the latency of the bot")
 async def ping(interaction: Interaction):
 	ping = nextcord.Embed(title="Bot latency", description=f"`{round(bot.latency * 1000)}ms`", color=nextcord.Colour.green()) 
-	await interaction.response.send_message(embed=ping) 
+	await interaction.response.send_message(embed=ping)
+
+@bot.slash_command(name="ban", description="Ban a member from the server")
+async def ban_member(interaction: Interaction, member: nextcord.Member, reason="No reason provided"):
+  await member.ban(reason=reason)
+  await interaction.response.send_message(f"{member} has been banned from the spaceship\nReason : {reason}")
+
+@bot.slash_command(name="kick", description="Kick a member from the server")
+async def kick_member(interaction: Interaction, member : nextcord.Member, reason="No reason provided"):
+	await member.kick(reason=reason)
+	await interaction.response.send_message(f"{member} was ejected from the spaceship\nReason : {reason}")
   
 bot.run(my_secret)
