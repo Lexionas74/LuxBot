@@ -66,6 +66,8 @@ async def apod(interaction: Interaction):
   embed.set_footer(text=f"Image and Explanation fron NASA. ({date})")
   
   await interaction.response.send_message(embed=embed)
-  
 
+# Can we use classes for the collection of Space commands? @Lexionas
+# i have no idea what you're talking about so go ahead
+  
 bot.run(my_secret)
