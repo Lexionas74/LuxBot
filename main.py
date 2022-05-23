@@ -38,11 +38,19 @@ async def ping(interaction: Interaction):
 @bot.slash_command(name="ban", description="Ban a member from the server")
 async def ban_member(interaction: Interaction, member: nextcord.Member, reason="No reason provided"):
   await member.ban(reason=reason)
-  await interaction.response.send_message(f"{member} has been banned from the spaceship\nReason : {reason}")
+  await interaction.response.send_message(f"{member} has been exiled from the spaceship\nReason : {reason}")
 
 @bot.slash_command(name="kick", description="Kick a member from the server")
 async def kick_member(interaction: Interaction, member : nextcord.Member, reason="No reason provided"):
 	await member.kick(reason=reason)
 	await interaction.response.send_message(f"{member} was ejected from the spaceship\nReason : {reason}")
-  
+
+@bot.slash_command(name="unban", description="Bring a member back from exile")
+async def unban(interaction: Interaction, user : nextcord.User):
+	await interaction.guild.unban(user=user)
+	await interaction.response.send_message(f"{user} was unexiled")
+
+
+
+# Luz brb, taking a bath
 bot.run(my_secret)
