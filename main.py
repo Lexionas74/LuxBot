@@ -1,6 +1,8 @@
 import nextcord
 from nextcord.ext import commands
 import os
+import urllib
+import json
 from datetime import datetime
 from nextcord import Guild, Interaction, Message
 from nextcord.ext import commands
@@ -9,6 +11,7 @@ import asyncio
 
 bot = commands.Bot(command_prefix="s!", intents=nextcord.Intents.all(), owner_ids ={935434855397871628, 687882857171255309})
 my_secret = os.environ['TOKEN']
+NASA = os.environ['NASAKEY']
 
 @bot.event
 async def on_ready():
@@ -50,7 +53,19 @@ async def unban(interaction: Interaction, user : nextcord.User):
 	await interaction.guild.unban(user=user)
 	await interaction.response.send_message(f"{user} was unexiled")
 
+@bot.slash_command(name="apod", description="Astronomy Pictures of the Day (Updates Daily)")
+async def apod(interaction: Interaction):
+  api = urllib.request.urlopen(f'https://api.nasa.gov/planetary/apod?api_key={NASA}')
+  data = json.load(api)
+  explanation = data['explanation']
+  image = data['url']
+  date = data['date']
+	
+  embed = nextcord.Embed(title="Astronomy Picture of the Day", description=explanation, color=nextcord.Colour.green())
+  embed.set_image(url=image)
+  embed.set_footer(text=f"Image and Explanation fron NASA. ({date})")
+  
+  await interaction.response.send_message(embed=embed)
+  
 
-
-# Luz brb, taking a bath
 bot.run(my_secret)
