@@ -48,12 +48,12 @@ async def kick_member(interaction: Interaction, member : nextcord.Member, reason
 	await member.kick(reason=reason)
 	await interaction.response.send_message(f"{member} was ejected from the spaceship\nReason : {reason}")
 
-@bot.slash_command(name="unban", description="Bring a member back from exile")
+@bot.slash_command(name="unban", description="Bring a member back from exile") #this 
 async def unban(interaction: Interaction, user : nextcord.User):
 	await interaction.guild.unban(user=user)
 	await interaction.response.send_message(f"{user} was unexiled")
 
-@bot.slash_command(name="apod", description="Astronomy Pictures of the Day (Updates Daily)")
+@bot.slash_command(name="apod", description="Astronomy Pictures of the Day (Updates Daily)") #this command sends a astrology picture, one that updates every day!
 async def apod(interaction: Interaction):
   api = urllib.request.urlopen(f'https://api.nasa.gov/planetary/apod?api_key={NASA}')
   data = json.load(api)
