@@ -8,8 +8,9 @@ from nextcord import Guild, Interaction, Message
 from nextcord.ext import commands
 import aiohttp
 import asyncio
+import random
 
-bot = commands.Bot(command_prefix="s!", intents=nextcord.Intents.all(), owner_ids ={935434855397871628, 687882857171255309},  help_command=None)
+bot = commands.Bot(command_prefix="s!", intents=nextcord.Intents.all(), owner_ids ={935434855397871628, 687882857171255309},  help_command=None, )
 my_secret = os.environ['TOKEN']
 NASA = os.environ['NASAKEY']
 
@@ -60,5 +61,14 @@ async def apod(interaction: Interaction):
   
   await interaction.response.send_message(embed=embed)
 
+async def ch_pr():
+    await bot.wait_until_ready()
+    statuses = ["the stars", "Andromeda travel towards us", "Earth burn
+								"]
+    while not bot.is_closed():
+        status = random.choice(statuses)
+        await bot.change_presence(activity=nextcord.Activity(
+            type=nextcord.ActivityType.watching, name=status))
+        await asyncio.sleep(300) 
 
 bot.run(my_secret)
