@@ -13,6 +13,7 @@ import random
 bot = commands.Bot(command_prefix="s!", intents=nextcord.Intents.all(), owner_ids ={935434855397871628, 687882857171255309},  help_command=None, )
 my_secret = os.environ['TOKEN']
 NASA = os.environ['NASAKEY']
+bot.launch_time = datetime.utcnow()
 
 @bot.event
 async def on_ready():
@@ -32,6 +33,15 @@ async def about(interaction: Interaction):
 async def ping(interaction: Interaction):
 	ping = nextcord.Embed(title="Bot latency", description=f"`{round(bot.latency * 1000)}ms`", color=nextcord.Colour.green()) 
 	await interaction.response.send_message(embed=ping)
+
+@bot.slash_command(name="uptime", description="Shows the uptime of the bot")
+async def uptime(interaction: Interaction):
+		delta_uptime = datetime.utcnow() - bot.launch_time
+		hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+		minutes, seconds = divmod(remainder, 60)
+		days, hours = divmod(hours, 24)	
+		uptime = nextcord.Embed(title="Uptime", description=f"I have been up for {days}d, {hours}h, {minutes}m, {seconds}s", color=nextcord.Colour.green())
+		await interaction.response.send_message(embed=uptime)  
 
 @bot.slash_command(name="ban", description="Ban a member from the server") #this command bans a member from the server
 async def ban_member(interaction: Interaction, member: nextcord.Member, reason="No reason provided"):
