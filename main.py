@@ -9,7 +9,7 @@ from nextcord.ext import commands
 import aiohttp
 import asyncio
 
-bot = commands.Bot(command_prefix="s!", intents=nextcord.Intents.all(), owner_ids ={935434855397871628, 687882857171255309})
+bot = commands.Bot(command_prefix="s!", intents=nextcord.Intents.all(), owner_ids ={935434855397871628, 687882857171255309},  help_command=None)
 my_secret = os.environ['TOKEN']
 NASA = os.environ['NASAKEY']
 
