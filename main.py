@@ -64,7 +64,7 @@ async def apod(interaction: Interaction):
 
 async def ch_pr(): #changes the status, all space related :)
     await bot.wait_until_ready()
-    statuses = ["the stars", "Andromeda travel towards us", "Earth burn", "the space time continuum"]
+    statuses = ["the stars", "Andromeda travel towards us", "Earth burn", "the space time continuum", "the universe expand"]
     while not bot.is_closed():
         status = random.choice(statuses)
         await bot.change_presence(activity=nextcord.Activity(
