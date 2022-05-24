@@ -20,6 +20,7 @@ async def on_ready():
 	print("2")
 	print("1")
 	print("Blastoff!") # Space theme lol
+	await ch_pr()
 
 	
 @bot.slash_command(name="about", description="About the bot") #this command shows a small bit of info about the bot
@@ -63,8 +64,7 @@ async def apod(interaction: Interaction):
 
 async def ch_pr():
     await bot.wait_until_ready()
-    statuses = ["the stars", "Andromeda travel towards us", "Earth burn
-								"]
+    statuses = ["the stars", "Andromeda travel towards us", "Earth burn"]
     while not bot.is_closed():
         status = random.choice(statuses)
         await bot.change_presence(activity=nextcord.Activity(
