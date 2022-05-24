@@ -1,1 +1,1 @@
-LuxBot is a bot made by Lexionas74#1535 and Luziaf#9464 for the TCR Bot jame event.
+LuxBot is a bot made by Lexionas74#1535 and Luziaf#9464 for the TCR Bot jam event.
