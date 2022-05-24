@@ -62,7 +62,7 @@ async def apod(interaction: Interaction):
   
   await interaction.response.send_message(embed=embed)
 
-async def ch_pr():
+async def ch_pr(): #changes the status, all space related :)
     await bot.wait_until_ready()
     statuses = ["the stars", "Andromeda travel towards us", "Earth burn", "the space time continuum"]
     while not bot.is_closed():
