@@ -57,7 +57,7 @@ async def unban(interaction: Interaction, user : nextcord.User):
 	await interaction.guild.unban(user=user)
 	await interaction.response.send_message(f"{user} was unexiled")
 
-@bot.slash_command(name="apod", description="Astronomy Pictures of the Day (Updates Daily)") #this command sends a astrology picture, one that updates every day!
+@bot.slash_command(name="apod", description="Astronomy Pictures of the Day (Updates Daily)") #this command sends a astronomy picture, one that updates every day!
 async def apod(interaction: Interaction):
   api = urllib.request.urlopen(f'https://api.nasa.gov/planetary/apod?api_key={NASA}')
   data = json.load(api)
@@ -69,6 +69,8 @@ async def apod(interaction: Interaction):
   embed.set_image(url=image)
   embed.set_footer(text=f"Image and Explanation fron NASA. ({date})")
   await interaction.response.send_message(embed=embed)
+
+@bot.slash_command(name="", description="")
 
 async def ch_pr(): #changes the status, all space related :)
     await bot.wait_until_ready()
