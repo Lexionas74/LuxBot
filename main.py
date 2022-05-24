@@ -10,7 +10,7 @@ import aiohttp
 import asyncio
 import random
 
-bot = commands.Bot(command_prefix="s!", intents=nextcord.Intents.all(), owner_ids ={935434855397871628, 687882857171255309},  help_command=None, )
+bot = commands.Bot(command_prefix="s!", intents=nextcord.Intents.all(), owner_ids ={935434855397871628, 687882857171255309},  help_command=None)
 my_secret = os.environ['TOKEN']
 NASA = os.environ['NASAKEY']
 bot.launch_time = datetime.utcnow()
@@ -22,7 +22,6 @@ async def on_ready():
 	print("1")
 	print("Blastoff!") # Space theme lol
 	await ch_pr()
-
 	
 @bot.slash_command(name="about", description="About the bot") #this command shows a small bit of info about the bot
 async def about(interaction: Interaction):
@@ -69,7 +68,6 @@ async def apod(interaction: Interaction):
   embed = nextcord.Embed(title="Astronomy Picture of the Day", description=explanation, color=nextcord.Colour.green())
   embed.set_image(url=image)
   embed.set_footer(text=f"Image and Explanation fron NASA. ({date})")
-  
   await interaction.response.send_message(embed=embed)
 
 async def ch_pr(): #changes the status, all space related :)
@@ -79,6 +77,6 @@ async def ch_pr(): #changes the status, all space related :)
         status = random.choice(statuses)
         await bot.change_presence(activity=nextcord.Activity(
             type=nextcord.ActivityType.watching, name=status))
-        await asyncio.sleep(300) 
+        await asyncio.sleep(300)
 
 bot.run(my_secret)
