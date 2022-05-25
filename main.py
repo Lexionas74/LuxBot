@@ -70,23 +70,7 @@ async def apod(interaction: Interaction):
   embed.set_footer(text=f"Image and Explanation fron NASA. ({date})")
   await interaction.response.send_message(embed=embed)
 
-@bot.slash_command(name="solarsystem", description="Gives you Information about the solar system")
-async def solarsystem(interaction: Interaction):
-	api = urllib.request.urlopen(f'https://api.le-systeme-solaire.net/rest/bodies/{id}')
-	data = json.load(api)
-	englishname = data['englishName']
-	moons = data['moons']
-	gravity =data['gravity']
-	discoveredby = data['discoveredBy']
-	discoverydate = data['discoveryDate']
 
-	embed = nextcord.Embed(title=f"info about {id}", description=englishname)
-	embed.add_field(name="Moons", value=moons)
-	embed.add_field(name="Gravity", value=gravity)
-	embed.add_field(name="Discovered by", value=discoveredby)
-	embed.add_field(name="Discovery Date", value=discoverydate)
-
-	await interaction.response.send_message(embed=embed)
 
 async def ch_pr(): #changes the status, all space related :)
     await bot.wait_until_ready()
@@ -97,22 +81,6 @@ async def ch_pr(): #changes the status, all space related :)
             type=nextcord.ActivityType.watching, name=status))
         await asyncio.sleep(300)
 
-@bot.command()
-async def planetinfo(ctx):
-	api = urllib.request.urlopen(f'https://api.le-systeme-solaire.net/rest/bodies/{id}')
-	data = json.load(api)
-	englishname = data['englishName']
-	moons = data['moons']
-	gravity =data['gravity']
-	discoveredby = data['discoveredBy']
-	discoverydate = data['discoveryDate']
 
-	embed = nextcord.Embed(title=f"info about {id}", description=englishname)
-	embed.add_field(name="Moons", value=moons)
-	embed.add_field(name="Gravity", value=gravity)
-	embed.add_field(name="Discovered by", value=discoveredby)
-	embed.add_field(name="Discovery Date", value=discoverydate)
-
-	await ctx.send(embed=embed)
 
 bot.run(my_secret)
